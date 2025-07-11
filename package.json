@@ -1,0 +1,40 @@
+{
+  "name": "forged-in-syntax",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@splinetool/react-spline": "^4.0.0",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/vite": "^4.1.11",
+    "appwrite": "^18.1.1",
+    "framer-motion": "^12.23.3",
+    "gsap": "^3.13.0",
+    "locomotive-scroll": "^4.1.4",
+    "lucide-react": "^0.525.0",
+    "motion": "^12.23.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
+    "tailwind": "^4.0.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "vite": "^7.0.4"
+  }
+}
