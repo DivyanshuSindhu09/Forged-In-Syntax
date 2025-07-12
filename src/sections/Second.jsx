@@ -4,22 +4,16 @@
 
 const Second = () => {
   return (
-    <section className="entrance-message">
-      <div className="h-full col-center gap-10">
-  
-
-        <div className="text-wrapper">
-          <h3 className="gradient-title text-7xl md:text-4xl lg:text-5xl !leading-tight">
-            Innovate. 
-            <br /> Collaborate. 
-            <br /> Succeed.
-          </h3>
-        </div>
-
-        
+    <section className="h-screen w-full flex entrance-message items-center justify-center px-4">
+      <div className="text-center">
+        <h3 className="text-[12vw] md:text-[8vw] lg:text-[6vw] font-bold leading-tight gradient-title">
+          Innovate... <br />
+          Collaborate... <br />
+          Succeed...
+        </h3>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Second
+export default Second;
