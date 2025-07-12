@@ -81,7 +81,7 @@ const Hero = () => {
         trigger: '.hero-section',
         start: 'top top',
         scrub: 2,
-        end: '+=200%',
+        end: '+=100%',
         pin: true,
       }
     })
@@ -97,7 +97,7 @@ const Hero = () => {
       // .to('.overlay-logo', { opacity: 1, duration :0.1, onComplete: () => {
       //   gsap.to('.overlay-logo', { opacity: 0, duration:0.1 });
       // } }, '<')
-      .to('.entrance-message', { duration: 1, ease: 'power1.inOut', maskImage: 'radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)' }, '<')
+      .to('.entrance-message', { duration: 2, ease: 'power1.inOut', maskImage: 'radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)' }, '<')
     
     // No blur animation needed
   });
