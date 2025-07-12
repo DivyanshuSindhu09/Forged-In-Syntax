@@ -9,7 +9,7 @@ const Second = () => {
   
 
         <div className="text-wrapper">
-          <h3 className="gradient-title text-4xl md:text-4xl lg:text-5xl !leading-tight">
+          <h3 className="gradient-title text-7xl md:text-4xl lg:text-5xl !leading-tight">
             Innovate. 
             <br /> Collaborate. 
             <br /> Succeed.
