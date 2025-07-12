@@ -161,10 +161,10 @@ main {
   mask-size: 100% 100%;
 }
 
-.mask-wrapper {
+/* .mask-wrapper {
   mask-image: url("../public/Group\ 2.svg");
   mask-repeat: no-repeat;
-}
+} */
 
 
 
