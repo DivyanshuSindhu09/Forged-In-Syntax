@@ -51,7 +51,7 @@ const Hero = () => {
         setShowOverlayText(false);
         return;
       }
-      // If hero section is mostly in view, show text, else hide
+      
       if (rect.top > -windowHeight * 0.3 && rect.bottom > windowHeight * 0.3) {
         setShowOverlayText(true);
       } else {
@@ -66,41 +66,40 @@ const Hero = () => {
     };
   }, [maskDone]);
 
-  useGSAP(() => {
-    gsap.set('.mask-wrapper', {
-      maskPosition: "42% 41%",
-      maskSize: "11000% 11000%",
-    });
-
-    // gsap.set('.mask-logo', { marginTop: '-100vh', opacity: 0 });
-
-    gsap.set('.entrance-message', { marginTop: '0vh' });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        scrub: 2,
-        end: '+=100%',
-        pin: true,
-      }
-    })
-
-   
-      // .to('.fade-out', { opacity: 0, ease: 'power1.inOut' })
-      // .to('.scale-out', { scale: 1, ease: 'power1.inOut' })
-      .to('.mask-wrapper', { 
-        duration : 5,
-        maskPosition : "50% 90%",
-        maskSize : "40% 40%", ease: 'power1.inOut' }, '<')
-      .to('.mask-wrapper', { opacity: 0, onComplete: () => setMaskDone(true) })
-      // .to('.overlay-logo', { opacity: 1, duration :0.1, onComplete: () => {
-      //   gsap.to('.overlay-logo', { opacity: 0, duration:0.1 });
-      // } }, '<')
-      .to('.entrance-message', { duration: 4, ease: 'power1.inOut', maskImage: 'radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)' }, '<')
-    
-    // No blur animation needed
+useGSAP(() => {
+  gsap.set('.mask-wrapper', {
+    maskPosition: "42% 41%",
+    maskSize: "11000% 11000%",
   });
+
+  gsap.set('.entrance-message', { marginTop: '0vh' });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero-section',
+      start: 'top top',
+      scrub: 2,
+      end: '+=30%',
+      pin: true,
+    }
+  })
+
+  tl.to('.mask-wrapper', {
+      duration: 2,
+      maskPosition: "50% 90%",
+      maskSize: "40% 40%",
+      ease: 'power1.inOut'
+    }, '<')
+    .to('.mask-wrapper', {
+      opacity: 0,
+      onComplete: () => setMaskDone(true)
+    })
+    .to('.entrance-message', {
+      duration: 6, 
+      ease: 'power1.inOut',
+      maskImage: 'radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)'
+    })
+});
 
   return (
     <section className="hero-section" ref={heroRef}>
