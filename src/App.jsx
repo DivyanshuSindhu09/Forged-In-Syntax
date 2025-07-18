@@ -63,11 +63,11 @@ const App = () => {
       <Toaster position="top-right" />
       <Loader />
       <First />
-      {/* <About /> */}
-      {/* <Features /> */}
-      {/* <Members /> */}
-      {/* <Projects /> */}
-      {/* <Footer/> */}
+      <About />
+      <Features />
+      <Members />
+      <Projects />
+      <Footer/>
     </main>
   );
 };

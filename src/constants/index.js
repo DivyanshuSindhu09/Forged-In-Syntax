@@ -11,7 +11,7 @@ export const myProjects = [
     ],
     href: "https://github.com/DeepanshuSharma05/RESURRECTION",
     logo: "",
-    image: "/assets/projects/game-engine.jpg",
+    image: "/assets/projects/resurrection.webp",
     tags: [
       {
         id: 1,
@@ -60,12 +60,12 @@ export const myProjects = [
       },
       {
         id: 3,
-        name: "My Sql",
+        name: "GSAP",
         path: "/assets/logos/vitejs.svg",
       },
       {
         id: 4,
-        name: "Python",
+        name: "SPLINE",
         path: "/assets/logos/tailwindcss.svg",
       },
     ],
