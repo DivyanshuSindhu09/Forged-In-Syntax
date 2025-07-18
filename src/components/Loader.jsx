@@ -8,7 +8,6 @@ const Loader = () => {
   gsap.registerPlugin(SplitText);
 
   useGSAP(() => {
-  
     document.fonts.ready.then(() => {
       const split = new SplitText(".split", { type: "chars" });
 
@@ -30,20 +29,13 @@ const Loader = () => {
           ease: "power2.inOut",
         })
         .to(
-          ".loader-top",
+          ".loader-content",
           {
-            y: "-100%",
+            height: 0,
             duration: 1.2,
+            ease: "power2.inOut",
           },
           "+=0.5"
-        )
-        .to(
-          ".loader-bottom",
-          {
-            y: "100%",
-            duration: 1.2,
-          },
-          "<"
         )
         .set(loaderRef.current, { display: "none" });
     });
@@ -52,17 +44,11 @@ const Loader = () => {
   return (
     <section
       ref={loaderRef}
-      className="w-full h-screen fixed top-0 left-0 z-[9999] overflow-hidden"
+      className="w-full h-screen fixed top-0 left-0 z-[9999] overflow-hidden pointer-events-none"
     >
-      <div className="loader-top w-full h-1/2 flex items-end justify-center bg-[#1F1E24]">
+      <div className="loader-content h-full bg-[#1F1E24] flex items-center justify-center">
         <h2 className="split text-white text-6xl sm:text-8xl font-[acma-black]">
-          <span className="above block">Forged In</span>
-        </h2>
-      </div>
-
-      <div className="loader-bottom w-full h-1/2 flex items-start justify-center bg-[#1F1E24]">
-        <h2 className="split text-white text-6xl sm:text-8xl font-[acma-black]">
-          <span className="below block">Syntax</span>
+          ForgedInSyntax
         </h2>
       </div>
     </section>
