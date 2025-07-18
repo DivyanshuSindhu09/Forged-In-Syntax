@@ -1,27 +1,29 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import Second from "./Second";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import Second from "./Second";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
   const bigImage = "/forged_landscape.jpeg";
   const smallImage = "/forged_portrait.jpeg";
+
   const [photoSrc, setPhotoSrc] = useState(
     window.innerWidth < 760 ? smallImage : bigImage
   );
 
-  const handleImageSrc = () => {
+  const handleImageSrc = useCallback(() => {
     setPhotoSrc(window.innerWidth < 760 ? smallImage : bigImage);
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", handleImageSrc);
-    return () => {
-      window.removeEventListener("resize", handleImageSrc);
-    };
-  }, []);
+    return () => window.removeEventListener("resize", handleImageSrc);
+  }, [handleImageSrc]);
 
   const [showOverlayText, setShowOverlayText] = useState(true);
   const [maskDone, setMaskDone] = useState(false);
@@ -30,7 +32,7 @@ const Hero = () => {
   useEffect(() => {
     if (!maskDone) return;
 
-    const handleScrollOrOverlay = () => {
+    const handleScroll = () => {
       if (!heroRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -40,117 +42,114 @@ const Hero = () => {
         overlayLogo &&
         parseFloat(window.getComputedStyle(overlayLogo).opacity || "0") > 0.5;
 
-      setShowOverlayText(!overlayVisible && rect.top > -windowHeight * 0.3 && rect.bottom > windowHeight * 0.3);
+      setShowOverlayText(
+        !overlayVisible &&
+          rect.top > -windowHeight * 0.3 &&
+          rect.bottom > windowHeight * 0.3
+      );
     };
 
-    window.addEventListener("scroll", handleScrollOrOverlay);
-    const intervalId = setInterval(handleScrollOrOverlay, 200);
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollOrOverlay);
-      clearInterval(intervalId);
-    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [maskDone]);
 
-  // GSAP scroll animation
+  // GSAP animation
   useGSAP(() => {
-    gsap.set(".mask-wrapper", {
-      maskPosition: "42% 41%",
-      maskSize: "11000% 11000%",
-    });
+    const ctx = gsap.context(() => {
+      gsap.set(".mask-wrapper", {
+        maskPosition: "42% 41%",
+        maskSize: "11000% 11000%",
+      });
 
-    gsap.set(".entrance-message", { marginTop: "0vh" });
+      gsap.set(".entrance-message", { marginTop: "0vh" });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero-section",
-        start: "top top",
-        scrub: 2,
-        end: "+=30%",
-        pin: true,
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".hero-section",
+          start: "top top",
+          scrub: 2,
+          end: "+=30%",
+          pin: true,
+        },
+      });
 
-    tl.to(
-      ".mask-wrapper",
-      {
+      tl.to(".mask-wrapper", {
         duration: 2,
         maskPosition: "50% 90%",
         maskSize: "40% 40%",
         ease: "power1.inOut",
-      },
-      "<"
-    )
-      .to(".mask-wrapper", {
-        opacity: 0,
-        onComplete: () => setMaskDone(true),
       })
-      .to(".entrance-message", {
-        duration: 6,
+        .to(".mask-wrapper", {
+          opacity: 0,
+          onComplete: () => setMaskDone(true),
+        })
+        .to(".entrance-message", {
+          duration: 6,
+          ease: "power1.inOut",
+          maskImage:
+            "radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)",
+        });
+
+      gsap.to(".orb", {
+        duration: 1,
         ease: "power1.inOut",
-        maskImage:
-          "radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)",
+        y: 0,
       });
-
-    gsap.to(".orb", {
-      duration: 1,
-      ease: "power1.inOut",
-      y: 0,
     });
-  });
 
-  // Particle.js config
+    return () => ctx.revert();
+  }, []);
+
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
-  const particlesOptions = {
-  fullScreen: { enable: false },
-  background: { color: "transparent" },
-  particles: {
-    number: {
-      value: 150, // ⬆️ Increased from 60 to 150
-      density: {
+  const particlesOptions = useMemo(() => ({
+    fullScreen: { enable: false },
+    background: { color: "transparent" },
+    particles: {
+      number: {
+        value: 120,
+        density: {
+          enable: true,
+          value_area: 900,
+        },
+      },
+      color: {
+        value: ["#b14fff", "#5084ff"],
+      },
+      shape: {
+        type: "circle",
+      },
+      opacity: {
+        value: 0.3,
+        random: true,
+      },
+      size: {
+        value: 4,
+        random: true,
+      },
+      move: {
         enable: true,
-        value_area: 800,
+        speed: 0.8,
+        outMode: "out",
       },
     },
-    color: {
-      value: ["#b14fff", "#5084ff"],
+    interactivity: {
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" },
+      },
+      modes: {
+        repulse: { distance: 80 },
+        push: { quantity: 2 },
+      },
     },
-    shape: {
-      type: "circle",
-    },
-    opacity: {
-      value: 0.5, // Slightly more visible
-      random: true,
-    },
-    size: {
-      value: 5, // ⬆️ Increased from 3 to 5
-      random: true,
-    },
-    move: {
-      enable: true,
-      speed: 1,
-      out_mode: "out",
-    },
-  },
-  interactivity: {
-    events: {
-      onhover: { enable: true, mode: "repulse" },
-      onclick: { enable: true, mode: "push" },
-    },
-    modes: {
-      repulse: { distance: 100 },
-      push: { quantity: 4 },
-    },
-  },
-};
+  }), []);
 
   return (
     <section className="hero-section" ref={heroRef}>
       <div className="w-full h-screen mask-wrapper relative overflow-hidden">
-        {/* Background Particles */}
         <Particles
           id="tsparticles"
           init={particlesInit}
@@ -158,7 +157,6 @@ const Hero = () => {
           className="absolute top-0 left-0 w-full h-full z-0"
         />
 
-        {/* Foreground content */}
         <div className="w-full h-full absolute flex flex-col justify-center items-center z-10">
           <div className="overflow-hidden">
             <h1 className="orb text-9xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
@@ -173,7 +171,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Scroll down button */}
         <button
           onClick={() => {
             const next = document.querySelector(".entrance-message");
@@ -193,7 +190,7 @@ const Hero = () => {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="feather feather-chevron-down text-white drop-shadow-lg"
+              className="feather feather-chevron-down text-white"
               style={{ filter: "drop-shadow(0 2px 8px #0008)" }}
             >
               <polyline points="6 9 12 15 18 9" />
@@ -205,7 +202,6 @@ const Hero = () => {
         </button>
       </div>
 
-      {/* Next Section */}
       <Second />
     </section>
   );
