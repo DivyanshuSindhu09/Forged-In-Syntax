@@ -164,7 +164,7 @@ const Hero = () => {
         A PROFESSIONAL
       </h1>
     </div>
-    <br />
+   
     <div className="overflow-hidden">
       <h1 className="orb text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 leading-tight">
         CODING COMMUNITY
