@@ -4,6 +4,7 @@ import RegisterModal from "../components/RegisterModal";
 import { Frameworks } from "./Frameworks";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
+
 import gsap from "gsap";
 
 const Features = () => {
@@ -111,11 +112,14 @@ const Features = () => {
               Do you want to start a project together?
             </p>
             
-            <button
-            onClick={() => setShowRegister(true)}
-            className="bg-indigo text-white px-4 py-2 rounded-xl font-[absans] hover:bg-indigo-600 transition"
+           <button
+  onClick={() => setShowRegister(true)}
+  className="relative w-[20vw] featbut overflow-hidden group bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-xl font-[absans] text-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-indigo-500/40"
 >
-  Apply Now
+  <span className="relative z-10">Apply Now</span>
+
+  
+  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-full transition-transform duration-700 ease-in-out blur-sm pointer-events-none" />
 </button>
           </div>
         </div>
