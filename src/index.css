@@ -391,6 +391,18 @@ body {
   margin-bottom: 30vh;
 }
 
+.section-spacing p {
+  font-size: 5vw;
+}
+
+.section-spacing h2{
+  font-size: 7vw;
+}
+
+.frameworks{
+  left: 90%;
+}
+
 .first-mask{
   height: 100%;
   background-size: cover;

@@ -39,9 +39,9 @@ const Features = () => {
 
   return (
     <section className="c-space section-spacing text-xl mb-20" id="features-section">
-      <h2 className="text-4xl sm:text-6xl md:text-7xl font-[acma-black] text-center reasons">
+      <h3 className="text-4xl sm:text-6xl md:text-7xl font-[acma-black] text-center reasons">
         Reasons to Join Us!
-      </h2>
+      </h3>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-6 md:auto-rows-[18rem] mt-12">
 
@@ -52,10 +52,10 @@ const Features = () => {
             className="absolute disable scale-[1.4] right-[-4rem] top-[-2rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[1.2] lg:left-0 lg:top-0"
           />
           <div className="bg-transparent z-10 p-4 md:p-6">
-            <p className="headtext font-[acma-semi] text-lg sm:text-xl">
+            <h2 className="headtext font-[acma-semi] text-lg sm:text-xl">
               Real-World Projects
-            </p>
-            <p className="subtext font-[absans] text-sm sm:text-base">
+            </h2>
+            <p className="subtext font-[absans] text-base sm:text-base">
               Work on innovative projects that solve actual problems and build your portfolio while learning.
             </p>
           </div>
@@ -65,9 +65,9 @@ const Features = () => {
   
         <div className="grid-default-color grid-2 min-h-[18rem]">
           <div ref={grid2Container} className="flex items-center justify-center w-full h-full relative">
-            <p className="absolute top-4 left-1/2 -translate-x-1/2 text-center text-4xl font-[absans] font-semibold text-gray-700">
+            <h2 className="absolute top-4 left-1/2 -translate-x-1/2 text-center text-4xl font-[absans] font-semibold text-gray-700">
               Focus Areas
-            </p>
+            </h2>
             <Card
               style={{ rotate: "75deg", top: "30%", left: "20%" }}
               text="Web Development"
@@ -95,9 +95,9 @@ const Features = () => {
         <div className="grid-black-color relative grid-3 min-h-[16rem] p-4">
           {/* <div className="w-[60vh] h-[60vh] blur-2xl disable rounded-full right-[-15%] bottom-[-40%] bg-gray-500 absolute"></div> */}
           <div className="z-10 w-full sm:w-[60%]">
-            <p className="headtext font-[acma-semi] text-lg sm:text-xl">
+            <h2 className="headtext font-[acma-semi] text-lg sm:text-xl">
               Community Spirit
-            </p>
+            </h2>
             <p className="subtext font-[absans] text-sm sm:text-base">
               Join a friendly community of developers where everyone helps each other grow and succeed.
             </p>
@@ -123,14 +123,14 @@ const Features = () => {
     
         <div className="grid-default-color grid-5 relative min-h-[16rem]">
           <div className="z-10 w-full sm:w-[60%] p-4">
-            <p className="headtext font-[acma-semi] text-lg sm:text-xl">
+            <h2 className="headtext font-[acma-semi] text-lg sm:text-xl">
               Developer Network
-            </p>
+            </h2>
             <p className="subtext font-[absans] relative z-11 text-sm sm:text-base">
               Connect with like-minded developers, share knowledge, and build lasting professional relationships in the tech community.
             </p>
           </div>
-          <div className="absolute inset-y-0 md:inset-y-9 w-full  h-full start-[50%] md:scale-125">
+          <div className="absolute inset-y-0 md:inset-y-9 w-full frameworks  h-full start-[50%] md:scale-125">
             <Frameworks />
           </div>
         </div>
