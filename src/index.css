@@ -424,3 +424,22 @@ body {
   /* z-index: 99; */
   background-repeat: no-repeat;
 }
+
+.orb {
+  /* font-family: 'Poppins', sans-serif; */
+  
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(to right, #fc72ff, #8f68ff, #487bff, #8f68ff, #fc72ff);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate-gradient 2.5s linear infinite;
+}
+
+@keyframes animate-gradient {
+  to {
+    background-position: 200%;
+  }
+}

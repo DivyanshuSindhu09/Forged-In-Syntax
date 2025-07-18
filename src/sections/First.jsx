@@ -4,6 +4,7 @@ import Second from "./Second"
 import { useEffect, useState, useRef } from "react";
 
 
+
 const Hero = () => {
   const bigImage = '/forged_landscape.jpeg'
   const smallImage = '/forged_portrait.jpeg'
@@ -110,11 +111,16 @@ useGSAP(() => {
       // }}
       className = {`w-full h-screen  mask-wrapper   `}
       >
-      <img
+      {/* <img
       className="w-full h-full object-center object-contain"
       style={{ filter: `none` }}
-      src={photoSrc}  />
+      src={photoSrc}  /> */}
       {/* Fixed black scroll down indicator */}
+      <div className="w-full relative h-full ">
+      
+      <div className="w-full h-full absolute flex justify-center items-center"> <h1 className="orb text-9xl font-[acma-black]">Forged In <br /> Syntax </h1> </div>
+
+      </div>
       <button
         onClick={() => {
           const nextSection = document.querySelector('.entrance-message');
@@ -127,11 +133,11 @@ useGSAP(() => {
         style={{background: 'none', border: 'none'}}
       >
         <span className="animate-bounce">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down text-black drop-shadow-lg" style={{ filter: 'drop-shadow(0 2px 8px #0008)' }}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down text-white  drop-shadow-lg" style={{ filter: 'drop-shadow(0 2px 8px #0008)' }}>
             <polyline points="6 9 12 15 18 9" />
           </svg>
         </span>
-        <span className="mt-1 text-xs text-black opacity-80 tracking-widest group-hover:opacity-100 transition">Scroll Down</span>
+        <span className="mt-1 text-xs text-white opacity-80 tracking-widest group-hover:opacity-100 transition">Scroll Down</span>
       </button>
       </div>
 
