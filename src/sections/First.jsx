@@ -94,7 +94,7 @@ const Hero = () => {
         duration: 1,
         ease: "power1.inOut",
         y: 0,
-        delay : 4
+        delay : 5
       });
     });
 
