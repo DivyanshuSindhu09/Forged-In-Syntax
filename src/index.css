@@ -379,6 +379,18 @@ body {
   display: none;
 }
 
+/* .graycont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.graymask{
+  font-size: 6vh;
+  margin-bottom: 30vh;
+}
+
 .first-mask{
   height: 100%;
   background-size: cover;

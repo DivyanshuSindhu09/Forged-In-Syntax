@@ -47,7 +47,7 @@ const Loader = () => {
       className="w-full h-screen fixed top-0 left-0 z-[9999] overflow-hidden pointer-events-none"
     >
       <div className="loader-content h-full bg-[#1F1E24] flex items-center justify-center">
-        <h2 className="split text-white text-6xl sm:text-8xl font-[acma-black]">
+        <h2 className="split text-white text-3xl sm:text-8xl md:text-8xl font-[acma-black] whitespace-nowrap">
           ForgedInSyntax
         </h2>
       </div>
