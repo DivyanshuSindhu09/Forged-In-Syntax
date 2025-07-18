@@ -151,57 +151,58 @@ const Hero = () => {
   return (
     <section className="hero-section" ref={heroRef}>
       <div className="w-full h-screen mask-wrapper relative overflow-hidden">
-        <Particles
-          id="tsparticles"
-          init={particlesInit}
-          options={particlesOptions}
-          className="absolute top-0 left-0 w-full h-full z-0"
-        />
+  <Particles
+    id="tsparticles"
+    init={particlesInit}
+    options={particlesOptions}
+    className="absolute top-0 left-0 w-full h-full z-0"
+  />
 
-        <div className="w-full h-full absolute flex flex-col justify-center items-center z-10">
-          <div className="overflow-hidden">
-            <h1 className="orb text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-              A PROFESSIONAL
-            </h1>
-          </div>
-          <br />
-          <div className="overflow-hidden">
-            <h1 className="orb text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-              CODING COMMUNITY
-            </h1>
-          </div>
-        </div>
+  <div className="w-full h-full absolute flex flex-col justify-center items-center z-10 px-4 text-center">
+    <div className="overflow-hidden">
+      <h1 className="orb text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 leading-tight">
+        A PROFESSIONAL
+      </h1>
+    </div>
+    <br />
+    <div className="overflow-hidden">
+      <h1 className="orb text-[13vw] sm:text-6xl md:text-7xl lg:text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 leading-tight">
+        CODING COMMUNITY
+      </h1>
+    </div>
+  </div>
 
-        <button
-          onClick={() => {
-            const next = document.querySelector(".entrance-message");
-            if (next) next.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 flex flex-col items-center group focus:outline-none"
-          aria-label="Scroll Down"
-          style={{ background: "none", border: "none" }}
-        >
-          <span className="animate-bounce">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="feather feather-chevron-down text-white"
-              style={{ filter: "drop-shadow(0 2px 8px #0008)" }}
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </span>
-          <span className="mt-1 text-xs text-white opacity-80 tracking-widest group-hover:opacity-100 transition">
-            Scroll Down
-          </span>
-        </button>
-      </div>
+  <button
+    onClick={() => {
+      const next = document.querySelector(".entrance-message");
+      if (next) next.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 flex flex-col items-center group focus:outline-none"
+    aria-label="Scroll Down"
+    style={{ background: "none", border: "none" }}
+  >
+    <span className="animate-bounce">
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="feather feather-chevron-down text-white"
+        style={{ filter: "drop-shadow(0 2px 8px #0008)" }}
+      >
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </span>
+    <span className="mt-1 text-xs text-white opacity-80 tracking-widest group-hover:opacity-100 transition">
+      Scroll Down
+    </span>
+  </button>
+</div>
+
 
       <Second />
     </section>
