@@ -63,15 +63,15 @@ const Hero = () => {
 
       gsap.set(".entrance-message", { marginTop: "0vh" });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".hero-section",
-          start: "top top",
-          scrub: 2,
-          end: "+=30%",
-          pin: true,
-        },
-      });
+     const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".hero-section",
+    start: "top top",
+    end: "+=200%", 
+    scrub: 3,      
+    pin: true,
+  },
+});
 
       tl.to(".mask-wrapper", {
         duration: 2,
@@ -94,6 +94,7 @@ const Hero = () => {
         duration: 1,
         ease: "power1.inOut",
         y: 0,
+        delay : 4
       });
     });
 
@@ -159,14 +160,14 @@ const Hero = () => {
 
         <div className="w-full h-full absolute flex flex-col justify-center items-center z-10">
           <div className="overflow-hidden">
-            <h1 className="orb text-9xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-              FORGED IN
+            <h1 className="orb text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+              A PROFESSIONAL
             </h1>
           </div>
           <br />
           <div className="overflow-hidden">
-            <h1 className="orb text-9xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-              SYNTAX
+            <h1 className="orb text-8xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+              CODING COMMUNITY
             </h1>
           </div>
         </div>
