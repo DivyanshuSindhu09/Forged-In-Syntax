@@ -126,7 +126,7 @@ const Hero = () => {
         random: true,
       },
       size: {
-        value: 4,
+        value: 6,
         random: true,
       },
       move: {
