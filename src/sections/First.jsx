@@ -1,149 +1,214 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import Second from "./Second"
-import { useEffect, useState, useRef } from "react";
-
-
+import Second from "./Second";
+import { useEffect, useState, useRef, useCallback } from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const Hero = () => {
-  const bigImage = '/forged_landscape.jpeg'
-  const smallImage = '/forged_portrait.jpeg'
+  const bigImage = "/forged_landscape.jpeg";
+  const smallImage = "/forged_portrait.jpeg";
   const [photoSrc, setPhotoSrc] = useState(
-  window.innerWidth < 760 ? smallImage : bigImage
-);
+    window.innerWidth < 760 ? smallImage : bigImage
+  );
+
   const handleImageSrc = () => {
-  if (window.innerWidth < 760) {
-    setPhotoSrc(smallImage); 
-  } else {
-    setPhotoSrc(bigImage); 
-  }
-};
+    setPhotoSrc(window.innerWidth < 760 ? smallImage : bigImage);
+  };
 
-  useEffect(()=>{
-    window.addEventListener('resize', handleImageSrc)
-    console.log(photoSrc)
-    return ()=>{
-      window.removeEventListener('resize', handleImageSrc)
-    }
-  },[])
+  useEffect(() => {
+    window.addEventListener("resize", handleImageSrc);
+    return () => {
+      window.removeEventListener("resize", handleImageSrc);
+    };
+  }, []);
 
-  const [blur, setBlur] = useState(0); 
   const [showOverlayText, setShowOverlayText] = useState(true);
   const [maskDone, setMaskDone] = useState(false);
   const heroRef = useRef(null);
 
   useEffect(() => {
-    
     if (!maskDone) return;
-    let intervalId;
+
     const handleScrollOrOverlay = () => {
       if (!heroRef.current) return;
       const rect = heroRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-   
-      const overlayLogo = document.querySelector('.overlay-logo');
-      let overlayLogoVisible = false;
-      if (overlayLogo) {
-        const style = window.getComputedStyle(overlayLogo);
-        overlayLogoVisible = style.opacity && parseFloat(style.opacity) > 0.5;
-      }
-     
-      if (overlayLogoVisible) {
-        setShowOverlayText(false);
-        return;
-      }
-      
-      if (rect.top > -windowHeight * 0.3 && rect.bottom > windowHeight * 0.3) {
-        setShowOverlayText(true);
-      } else {
-        setShowOverlayText(false);
-      }
+
+      const overlayLogo = document.querySelector(".overlay-logo");
+      const overlayVisible =
+        overlayLogo &&
+        parseFloat(window.getComputedStyle(overlayLogo).opacity || "0") > 0.5;
+
+      setShowOverlayText(!overlayVisible && rect.top > -windowHeight * 0.3 && rect.bottom > windowHeight * 0.3);
     };
-    window.addEventListener('scroll', handleScrollOrOverlay);
-    intervalId = setInterval(handleScrollOrOverlay, 200);
+
+    window.addEventListener("scroll", handleScrollOrOverlay);
+    const intervalId = setInterval(handleScrollOrOverlay, 200);
+
     return () => {
-      window.removeEventListener('scroll', handleScrollOrOverlay);
+      window.removeEventListener("scroll", handleScrollOrOverlay);
       clearInterval(intervalId);
     };
   }, [maskDone]);
 
-useGSAP(() => {
-  gsap.set('.mask-wrapper', {
-    maskPosition: "42% 41%",
-    maskSize: "11000% 11000%",
+  // GSAP scroll animation
+  useGSAP(() => {
+    gsap.set(".mask-wrapper", {
+      maskPosition: "42% 41%",
+      maskSize: "11000% 11000%",
+    });
+
+    gsap.set(".entrance-message", { marginTop: "0vh" });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero-section",
+        start: "top top",
+        scrub: 2,
+        end: "+=30%",
+        pin: true,
+      },
+    });
+
+    tl.to(
+      ".mask-wrapper",
+      {
+        duration: 2,
+        maskPosition: "50% 90%",
+        maskSize: "40% 40%",
+        ease: "power1.inOut",
+      },
+      "<"
+    )
+      .to(".mask-wrapper", {
+        opacity: 0,
+        onComplete: () => setMaskDone(true),
+      })
+      .to(".entrance-message", {
+        duration: 6,
+        ease: "power1.inOut",
+        maskImage:
+          "radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)",
+      });
+
+    gsap.to(".orb", {
+      duration: 1,
+      ease: "power1.inOut",
+      y: 0,
+    });
   });
 
-  gsap.set('.entrance-message', { marginTop: '0vh' });
+  // Particle.js config
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine);
+  }, []);
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.hero-section',
-      start: 'top top',
-      scrub: 2,
-      end: '+=30%',
-      pin: true,
-    }
-  })
-
-  tl.to('.mask-wrapper', {
-      duration: 2,
-      maskPosition: "50% 90%",
-      maskSize: "40% 40%",
-      ease: 'power1.inOut'
-    }, '<')
-    .to('.mask-wrapper', {
-      opacity: 0,
-      onComplete: () => setMaskDone(true)
-    })
-    .to('.entrance-message', {
-      duration: 6, 
-      ease: 'power1.inOut',
-      maskImage: 'radial-gradient(circle at 50% 0vh, black 50%, transparent 100%)'
-    })
-});
+  const particlesOptions = {
+  fullScreen: { enable: false },
+  background: { color: "transparent" },
+  particles: {
+    number: {
+      value: 150, // ⬆️ Increased from 60 to 150
+      density: {
+        enable: true,
+        value_area: 800,
+      },
+    },
+    color: {
+      value: ["#b14fff", "#5084ff"],
+    },
+    shape: {
+      type: "circle",
+    },
+    opacity: {
+      value: 0.5, // Slightly more visible
+      random: true,
+    },
+    size: {
+      value: 5, // ⬆️ Increased from 3 to 5
+      random: true,
+    },
+    move: {
+      enable: true,
+      speed: 1,
+      out_mode: "out",
+    },
+  },
+  interactivity: {
+    events: {
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" },
+    },
+    modes: {
+      repulse: { distance: 100 },
+      push: { quantity: 4 },
+    },
+  },
+};
 
   return (
     <section className="hero-section" ref={heroRef}>
-      
-      <div 
-      // style={{
-      //   backgroundImage : `url(${photoSrc})`
-      // }}
-      className = {`w-full h-screen  mask-wrapper   `}
-      >
-      {/* <img
-      className="w-full h-full object-center object-contain"
-      style={{ filter: `none` }}
-      src={photoSrc}  /> */}
-      {/* Fixed black scroll down indicator */}
-      <div className="w-full relative h-full ">
-      
-      <div className="w-full h-full absolute flex justify-center items-center"> <h1 className="orb text-9xl font-[acma-black]">Forged In <br /> Syntax </h1> </div>
+      <div className="w-full h-screen mask-wrapper relative overflow-hidden">
+        {/* Background Particles */}
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          options={particlesOptions}
+          className="absolute top-0 left-0 w-full h-full z-0"
+        />
 
-      </div>
-      <button
-        onClick={() => {
-          const nextSection = document.querySelector('.entrance-message');
-          if (nextSection) {
-            nextSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-        className="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 flex flex-col items-center group focus:outline-none"
-        aria-label="Scroll Down"
-        style={{background: 'none', border: 'none'}}
-      >
-        <span className="animate-bounce">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down text-white  drop-shadow-lg" style={{ filter: 'drop-shadow(0 2px 8px #0008)' }}>
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
-        </span>
-        <span className="mt-1 text-xs text-white opacity-80 tracking-widest group-hover:opacity-100 transition">Scroll Down</span>
-      </button>
+        {/* Foreground content */}
+        <div className="w-full h-full absolute flex flex-col justify-center items-center z-10">
+          <div className="overflow-hidden">
+            <h1 className="orb text-9xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+              FORGED IN
+            </h1>
+          </div>
+          <br />
+          <div className="overflow-hidden">
+            <h1 className="orb text-9xl font-[acma-black] text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+              SYNTAX
+            </h1>
+          </div>
+        </div>
+
+        {/* Scroll down button */}
+        <button
+          onClick={() => {
+            const next = document.querySelector(".entrance-message");
+            if (next) next.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="fixed left-1/2 -translate-x-1/2 bottom-8 z-50 flex flex-col items-center group focus:outline-none"
+          aria-label="Scroll Down"
+          style={{ background: "none", border: "none" }}
+        >
+          <span className="animate-bounce">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="feather feather-chevron-down text-white drop-shadow-lg"
+              style={{ filter: "drop-shadow(0 2px 8px #0008)" }}
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+          <span className="mt-1 text-xs text-white opacity-80 tracking-widest group-hover:opacity-100 transition">
+            Scroll Down
+          </span>
+        </button>
       </div>
 
+      {/* Next Section */}
       <Second />
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

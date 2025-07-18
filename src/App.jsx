@@ -61,13 +61,13 @@ const App = () => {
   return (
     <main>
       <Toaster position="top-right" />
-      <Loader />
+      {/* <Loader /> */}
       <First />
-      <About />
-      <Features />
-      <Members />
-      <Projects />
-      <Footer/>
+      {/* <About /> */}
+      {/* <Features /> */}
+      {/* <Members /> */}
+      {/* <Projects /> */}
+      {/* <Footer/> */}
     </main>
   );
 };

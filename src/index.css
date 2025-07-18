@@ -427,7 +427,7 @@ body {
 
 .orb {
   /* font-family: 'Poppins', sans-serif; */
-  
+  transform: translateY(110%);
   text-transform: uppercase;
   text-align: center;
   background: linear-gradient(to right, #fc72ff, #8f68ff, #487bff, #8f68ff, #fc72ff);
