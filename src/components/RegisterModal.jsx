@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { motion } from "motion/react";
-import { databases } from "../lib/appwriteConfig"; 
+import { motion } from "framer-motion"; // 👈 corrected import
+import { databases } from "../lib/appwriteConfig";
 import toast from "react-hot-toast";
+
 const RegisterModal = ({ close }) => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -15,55 +16,56 @@ const RegisterModal = ({ close }) => {
     instagram: "",
   });
 
-  const DATABASE_ID = "67d536ac003c051aa770";
-  const COLLECTION_ID = "67d536e00038c2bc5952";
+  const DATABASE_ID = "67d536ac003c051aa770"; // ✅ Replace with your real DB ID
+  const COLLECTION_ID = "67d536e00038c2bc5952"; // ✅ Replace with your collection ID
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const applicationData = {
-    full_name: formData.fullName,
-    email: formData.email,
-    course: formData.program,
-    university: formData.university,
-    year: formData.year,
-    skills: formData.skills,
-    linkedin: formData.linkedin,
-    twitter: formData.xProfile || null,
-    instagram: formData.instagram || null,
-    created_at: new Date().toISOString()
+    const applicationData = {
+      full_name: formData.fullName,
+      email: formData.email,
+      course: formData.program,
+      university: formData.university,
+      year: formData.year,
+      skills: formData.skills,
+      linkedin: formData.linkedin,
+      twitter: formData.xProfile || null,
+      instagram: formData.instagram || null,
+      created_at: new Date().toISOString(),
+    };
+
+    const loadingToast = toast.loading("Submitting application...");
+
+    try {
+      const response = await databases.createDocument(
+        DATABASE_ID,
+        COLLECTION_ID,
+        "unique()",
+        applicationData
+      );
+      console.log("Appwrite response:", response);
+
+      toast.success("Application submitted!", { id: loadingToast });
+      close();
+    } catch (error) {
+      console.error("Appwrite error:", error);
+      toast.error("Submission failed: " + error.message, { id: loadingToast });
+    }
   };
-
-  const loadingToast = toast.loading("Submitting application...");
-
-  try {
-    await databases.createDocument(
-      DATABASE_ID,
-      COLLECTION_ID,
-      "unique()",
-      applicationData
-    );
-
-    toast.success("Application submitted!", { id: loadingToast });
-    close(); // close modal
-  } catch (error) {
-    toast.error("Submission failed: " + error.message, { id: loadingToast });
-    console.error("Appwrite error:", error);
-  }
-};
 
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-start overflow-y-auto backdrop-blur-sm bg-[#000000a4] pt-10 font-[absans]">
-     <motion.div
-  initial={{ opacity: 0, scale: 0.95 }}
-  animate={{ opacity: 1, scale: 1 }}
-  className="w-full max-w-3xl mx-auto p-6 border rounded-2xl shadow-lg bg-[#1a1a1a] border-white/10 relative max-h-[90vh] overflow-y-auto"
->
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="w-full max-w-3xl mx-auto p-6 border rounded-2xl shadow-lg bg-[#1a1a1a] border-white/10 relative max-h-[90vh] overflow-y-auto"
+      >
         <button
           onClick={close}
           className="absolute top-4 right-4 p-2 rounded hover:bg-gray-700 transition"
         >
-          <img src="assets/close.svg" className="w-5 h-5" />
+          <img src="assets/close.svg" className="w-5 h-5" alt="Close" />
         </button>
 
         <h2 className="text-indigo-400 text-xl sm:text-2xl font-bold mb-6">Apply Now</h2>
@@ -106,30 +108,29 @@ const RegisterModal = ({ close }) => {
           />
 
           <div className="relative">
-  <select
-    value={formData.year}
-    onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-    required
-    className="w-full appearance-none p-3 rounded-md bg-zinc-900 border border-white/20 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
-  >
-    <option value="" disabled>Select Year</option>
-    <option value="First">First</option>
-    <option value="Second">Second</option>
-    <option value="Third">Third</option>
-    <option value="Fourth">Fourth</option>
-  </select>
+            <select
+              value={formData.year}
+              onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+              required
+              className="w-full appearance-none p-3 rounded-md bg-zinc-900 border border-white/20 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
+            >
+              <option value="" disabled>Select Year</option>
+              <option value="First">First</option>
+              <option value="Second">Second</option>
+              <option value="Third">Third</option>
+              <option value="Fourth">Fourth</option>
+            </select>
 
-
-  <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-400">
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path d="M19 9l-7 7-7-7" />
-    </svg>
-  </div>
-</div>
+            <div className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-gray-400">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
 
           <textarea
             rows="3"
-            placeholder="List your technical skills * "
+            placeholder="List your technical skills *"
             value={formData.skills}
             onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
             className="w-full p-3 rounded-md bg-zinc-900 border border-white/20 text-white placeholder:text-gray-400"

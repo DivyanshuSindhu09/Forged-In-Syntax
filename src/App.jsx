@@ -12,6 +12,7 @@ import Members from './components/Members';
 import Lenis from '@studio-freight/lenis';
 import Footer from './components/Footer';
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const App = () => {
@@ -66,6 +67,7 @@ const App = () => {
       <About />
       <Features />
       <Members />
+      <RegisterModal/>
       <Projects />
       <Footer/>
     </main>
