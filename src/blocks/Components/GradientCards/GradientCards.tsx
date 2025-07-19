@@ -220,6 +220,17 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       linkedInUrl : 'https://www.linkedin.com/in/piyush-kumar-thakur-36a749326/',
       avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
     },
+    {
+      
+      title: "Aviral Shukla",
+      subtitle: "MERN",
+
+      borderColor: "#EF4444",
+      gradient: "linear-gradient(225deg,#8B5CF6,#000)",
+      linkedInUrl : 'https://www.linkedin.com/in/oakawol/',
+      techStack : 'HTML | CSS |JS',
+      avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
+    },
   ];
 
   const data = items?.length ? items : demo;
