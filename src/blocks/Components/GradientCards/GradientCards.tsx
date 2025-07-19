@@ -197,6 +197,29 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       techStack : 'KOTLIN | PYTHON | SQL ',
       avatar : 'https://png.pngtree.com/png-vector/20240910/ourmid/pngtree-business-women-avatar-png-image_13805764.png'
     },
+    {
+      
+      title: "Amit Kumar",
+      subtitle: "Problem Solver",
+      handle: "@DivyanshuSindhu09 ",
+      borderColor: "#F59E0B",
+      gradient: "linear-gradient(165deg,#F59E0B,#000)",
+      // portfolioUrl :'https://divyanshu-sindhu.forgedinsyntax.club/',
+      githubUrl : 'https://github.com/Amit-arch-byte',
+      linkedInUrl : 'https://www.linkedin.com/in/amit-kumar-ba571932b/',
+      description : 'Blending code and creativity to craft visually stunning, interactive, and meaningful digital experiences.',
+      techStack : 'C | C++',
+      avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
+    },
+    {
+      title: "Piyush Thakur",
+      subtitle: "Problem Solver",
+      borderColor: "#EF4444",
+      gradient: "linear-gradient(195deg,#EF4444,#000)",
+      techStack : 'C | C++',
+      linkedInUrl : 'https://www.linkedin.com/in/piyush-kumar-thakur-36a749326/',
+      avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
+    },
   ];
 
   const data = items?.length ? items : demo;
