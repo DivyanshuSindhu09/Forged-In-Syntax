@@ -16,8 +16,8 @@ const RegisterModal = ({ close }) => {
     instagram: "",
   });
 
-  const DATABASE_ID = "67d536ac003c051aa770"; // ✅ Replace with your real DB ID
-  const COLLECTION_ID = "67d536e00038c2bc5952"; // ✅ Replace with your collection ID
+  const DATABASE_ID = "67d536ac003c051aa770"; 
+  const COLLECTION_ID = "67d536e00038c2bc5952"; 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
