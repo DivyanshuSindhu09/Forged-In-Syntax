@@ -5,10 +5,12 @@ import { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import Second from "./Second";
+import RegisterModal from "../components/RegisterModal"
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const [showRegister, setShowRegister] = useState(false);
   const bigImage = "/forged_landscape.jpeg";
   const smallImage = "/forged_portrait.jpeg";
 
@@ -96,6 +98,12 @@ const Hero = () => {
         y: 0,
         delay : 5
       });
+      gsap.to('.home-apply', {
+        opacity : 1,
+        ease : 'power1.inOut',
+        delay : 5,
+        duration : 2
+      })
     });
 
     return () => ctx.revert();
@@ -110,7 +118,7 @@ const Hero = () => {
     background: { color: "transparent" },
     particles: {
       number: {
-        value: 120,
+        value: 130,
         density: {
           enable: true,
           value_area: 900,
@@ -127,7 +135,7 @@ const Hero = () => {
         random: true,
       },
       size: {
-        value: 6,
+        value: 7,
         random: true,
       },
       move: {
@@ -170,7 +178,16 @@ const Hero = () => {
         CODING COMMUNITY
       </h1>
     </div>
+    <button
+    onClick={() => setShowRegister(true)}
+    className="mt-8 relative w-[60vw] sm:w-[40vw] md:w-[20vw] overflow-hidden group bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-xl font-[absans] opacity-0 text-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-indigo-500/40 home-apply"
+  >
+    <span className="relative text-2xl z-99">Apply Now</span>
+    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-full transition-transform duration-700 ease-in-out blur-sm pointer-events-none" />
+  </button>
   </div>
+
+    
 
   <button
     onClick={() => {
@@ -203,7 +220,7 @@ const Hero = () => {
   </button>
 </div>
 
-
+{showRegister && <RegisterModal close={() => setShowRegister(false)} />}
       <Second />
     </section>
   );
