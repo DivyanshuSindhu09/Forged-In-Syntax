@@ -180,7 +180,7 @@ const Hero = () => {
     </div>
     <button
     onClick={() => setShowRegister(true)}
-    className="mt-8 relative w-[60vw] sm:w-[40vw] md:w-[20vw] overflow-hidden group bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-xl font-[absans] opacity-0 text-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-indigo-500/40 home-apply"
+    className="mt-8 relative w-[60vw] sm:w-[40vw] md:w-[20vw] border-[1px] border-white overflow-hidden group bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-xl font-[absans] opacity-0 text-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-indigo-500/40 home-apply"
   >
     <span className="relative text-2xl z-99">Apply Now</span>
     <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-full transition-transform duration-700 ease-in-out blur-sm pointer-events-none" />
