@@ -67,7 +67,7 @@ const App = () => {
       <About />
       <Features />
       <Members />
-      <RegisterModal/>
+     
       <Projects />
       <Footer/>
     </main>
