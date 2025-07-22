@@ -231,6 +231,19 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       techStack : 'HTML | CSS |JS',
       avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
     },
+    {
+      
+      title: "Anshu Singh Rajput",
+      subtitle: "Frontend Developer",
+
+      borderColor: "#06B6D4",
+      gradient: "linear-gradient(135deg,#06B6D4,#000)",
+      linkedInUrl : 'https://www.linkedin.com/in/anshu-singh-rajput-378b33324/',
+      
+      githubUrl : 'https://github.com/Anshu018',
+      techStack : 'HTML | CSS | JS',
+      avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
+    },
   ];
 
   const data = items?.length ? items : demo;
