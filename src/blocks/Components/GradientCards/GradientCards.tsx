@@ -244,6 +244,19 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       techStack : 'HTML | CSS | JS',
       avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
     },
+    {
+      
+      title: "Isha",
+      subtitle: "MERN",
+     
+      borderColor: "#06B6D4",
+      gradient: "linear-gradient(165deg,#F59E0B,#000)",
+      githubUrl : 'https://github.com/Isha-singh04',
+      linkedInUrl : 'https://www.linkedin.com/in/isha-singh-b00715300/',
+      
+      techStack : 'REACT | NODEJS | MONGODB',
+      avatar : 'https://png.pngtree.com/png-vector/20240910/ourmid/pngtree-business-women-avatar-png-image_13805764.png'
+    },
   ];
 
   const data = items?.length ? items : demo;
