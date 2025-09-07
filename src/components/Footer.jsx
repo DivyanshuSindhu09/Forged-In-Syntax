@@ -33,7 +33,7 @@ const Footer = () => {
             <i className="ri-instagram-line text-xl"></i>
             <span className="text-sm">Instagram</span>
           </a>
-          <a href="https://discord.com/invite/hXZUrvwzkn" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition">
+          <a href="https://discord.gg/VjFZGspq2V" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition">
             <i className="ri-discord-line text-xl"></i>
             <span className="text-sm">Discord</span>
           </a>
