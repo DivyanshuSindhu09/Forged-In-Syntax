@@ -257,6 +257,19 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       techStack : 'REACT | NODEJS | MONGODB',
       avatar : 'https://png.pngtree.com/png-vector/20240910/ourmid/pngtree-business-women-avatar-png-image_13805764.png'
     },
+    {
+      
+      title: "Vaibhav Singh",
+      subtitle: "Blockchain Developer",
+
+      borderColor: "#06B6D4",
+      gradient: "linear-gradient(135deg, #7C3AED, #1E3A8A)",
+      linkedInUrl : 'https://www.linkedin.com/in/vaibhav-singh-680910217/',
+      
+      githubUrl : 'https://github.com/vaibhav29-ed',
+      techStack : 'HTML | CSS | JS',
+      avatar : 'https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png'
+    },
   ];
 
   const data = items?.length ? items : demo;
