@@ -54,7 +54,7 @@ const GradientCards: React.FC<GradientCardsProps> = ({
       handle: "@zeroxv6",
       borderColor: "#4F46E5",
       gradient: "linear-gradient(145deg,#4F46E5,#000)",
-      portfolioUrl :'https://forgedinsyntax.club/members/raman',
+      portfolioUrl :'https://raman.forgedinsyntax.club/',
       githubUrl : 'https://github.com/zeroxv6',
       linkedInUrl : 'https://www.linkedin.com/in/raman-mann-47a982274/',
       techStack : 'Kotlin | Python | MySql ',
